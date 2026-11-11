@@ -1,0 +1,34 @@
+<section class="section-heading">
+  <div><span class="eyebrow">TU ESPACIO DE LECTURA</span><h1><%= isAdmin ? "Catálogo de biblioteca" : "Mi biblioteca" %></h1><p class="muted"><%= total %> <%= total === 1 ? "libro registrado" : "libros registrados" %><%= isAdmin ? " en total" : " en tu colección" %>.</p></div>
+  <a class="btn btn-primary" href="/libros/nuevo"><i class="bi bi-plus-lg"></i> Agregar libro</a>
+</section>
+<form action="/libros" method="GET" class="search-bar">
+  <i class="bi bi-search"></i><input type="search" name="q" value="<%= search %>" placeholder="Buscar por título, autor o categoría...">
+  <button class="btn btn-dark" type="submit">Buscar</button>
+  <% if (search) { %><a class="clear-search" href="/libros">Limpiar</a><% } %>
+</form>
+<% if (books.length) { %>
+  <div class="book-grid">
+    <% books.forEach(book => { %>
+      <article class="book-card">
+        <div class="book-cover"><i class="bi bi-book"></i><span><%= (book.category || "LECTURA").toUpperCase() %></span></div>
+        <div class="book-info">
+          <span class="book-category"><%= book.category %></span>
+          <h2><a href="/libros/<%= book._id %>"><%= book.title %></a></h2>
+          <p class="book-author">por <%= book.author %></p>
+          <div class="book-meta"><span><i class="bi bi-calendar3"></i> <%= book.year || "Año no indicado" %></span><% if (isAdmin && book.owner) { %><span><i class="bi bi-person"></i> <%= book.owner.name %></span><% } %></div>
+          <div class="card-actions"><a href="/libros/<%= book._id %>">Ver detalles <i class="bi bi-arrow-up-right"></i></a><a href="/libros/<%= book._id %>/editar" aria-label="Editar"><i class="bi bi-pencil"></i></a></div>
+        </div>
+      </article>
+    <% }) %>
+  </div>
+  <% if (pages > 1) { %>
+    <nav class="pagination">
+      <% if (page > 1) { %><a href="/libros?page=<%= page - 1 %>&q=<%= encodeURIComponent(search) %>"><i class="bi bi-chevron-left"></i> Anterior</a><% } %>
+      <span>Página <%= page %> de <%= pages %></span>
+      <% if (page < pages) { %><a href="/libros?page=<%= page + 1 %>&q=<%= encodeURIComponent(search) %>">Siguiente <i class="bi bi-chevron-right"></i></a><% } %>
+    </nav>
+  <% } %>
+<% } else { %>
+  <div class="empty-state"><span><i class="bi bi-journal-x"></i></span><h2><%= search ? "No encontramos resultados" : "Tu biblioteca está esperando" %></h2><p><%= search ? "Prueba con otro término de búsqueda." : "Todavía no has agregado libros. Comienza registrando el primero." %></p><% if (!search) { %><a class="btn btn-primary" href="/libros/nuevo">Agregar primer libro</a><% } %></div>
+<% } %>

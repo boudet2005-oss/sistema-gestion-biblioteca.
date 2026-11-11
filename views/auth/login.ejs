@@ -1,0 +1,13 @@
+<section class="auth-shell">
+  <div class="auth-aside"><span class="eyebrow">QUÉ BUENO TENERTE DE VUELTA</span><h2>Las buenas historias siempre esperan.</h2><p>Accede a tu cuenta para continuar gestionando tu biblioteca.</p><i class="bi bi-book-half auth-watermark"></i></div>
+  <div class="auth-card">
+    <span class="eyebrow">ACCESO A LA PLATAFORMA</span><h1>Iniciar sesión</h1><p class="muted">Introduce tus credenciales.</p>
+    <% if (errors.length) { %><div class="alert danger"><%= errors.map(e => e.msg).join(" ") %></div><% } %>
+    <form action="/auth/login" method="POST" class="form-stack">
+      <label>Correo electrónico<input type="email" name="email" autocomplete="email" required></label>
+      <label>Contraseña<input type="password" name="password" autocomplete="current-password" required></label>
+      <button class="btn btn-primary btn-full" type="submit">Entrar <i class="bi bi-arrow-right"></i></button>
+    </form>
+    <p class="auth-bottom">¿No tienes cuenta? <a href="/auth/registro">Regístrate</a></p>
+  </div>
+</section>

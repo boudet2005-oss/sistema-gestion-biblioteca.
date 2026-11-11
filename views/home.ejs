@@ -1,0 +1,30 @@
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><i class="bi bi-stars"></i> SISTEMA DE GESTIÓN DE BIBLIOTECA</span>
+    <h1>Las historias<br>merecen <em>un lugar.</em></h1>
+    <p>Organiza tu colección de libros de forma sencilla. Registra títulos, autores y categorías, y mantén toda la información de tu biblioteca al alcance de la mano.</p>
+    <% if (currentUser) { %>
+      <a class="btn btn-primary" href="/libros">Ir a mi biblioteca <i class="bi bi-arrow-right"></i></a>
+    <% } else { %>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/auth/registro">Comenzar ahora <i class="bi bi-arrow-right"></i></a>
+        <a class="btn btn-outline" href="/auth/login">Ya tengo una cuenta</a>
+      </div>
+    <% } %>
+    <div class="hero-note"><i class="bi bi-shield-check"></i> Acceso seguro con cuentas personales</div>
+  </div>
+  <div class="hero-art">
+    <div class="art-glow"></div>
+    <div class="book-stack">
+      <div class="book book-one"><span>EL ARTE DE LEER</span><small>COLECCIÓN CLÁSICA</small></div>
+      <div class="book book-two"><span>IDEAS QUE<br>TRANSFORMAN</span><small>ENSAYO</small></div>
+      <div class="book book-three"><span>OTROS<br>HORIZONTES</span><small>NARRATIVA</small></div>
+    </div>
+    <div class="floating-note"><i class="bi bi-bookmark-heart"></i><span><b>Tu colección</b><small>En un solo lugar</small></span></div>
+  </div>
+</section>
+<section class="features">
+  <div><span class="feature-icon"><i class="bi bi-journal-plus"></i></span><h3>Registra libros</h3><p>Agrega títulos, autores, categorías y datos bibliográficos.</p></div>
+  <div><span class="feature-icon"><i class="bi bi-search"></i></span><h3>Encuentra rápido</h3><p>Busca en tu colección por título, autor o categoría.</p></div>
+  <div><span class="feature-icon"><i class="bi bi-person-lock"></i></span><h3>Acceso protegido</h3><p>Cada usuario administra sus propios registros.</p></div>
+</section>

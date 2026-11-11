@@ -1,0 +1,14 @@
+<section class="auth-shell">
+  <div class="auth-aside"><span class="eyebrow">BIENVENIDO A BIBLIOTECA CENTRAL</span><h2>Tu próxima lectura comienza aquí.</h2><p>Crea tu cuenta y comienza a organizar tu colección.</p><i class="bi bi-book-half auth-watermark"></i></div>
+  <div class="auth-card">
+    <span class="eyebrow">CREAR CUENTA</span><h1>Regístrate</h1><p class="muted">Completa tus datos para continuar.</p>
+    <% if (errors.length) { %><div class="alert danger"><%= errors.map(e => e.msg).join(" ") %></div><% } %>
+    <form action="/auth/registro" method="POST" class="form-stack">
+      <label>Nombre completo<input type="text" name="name" value="<%= formData.name || '' %>" maxlength="80" required></label>
+      <label>Correo electrónico<input type="email" name="email" value="<%= formData.email || '' %>" required></label>
+      <label>Contraseña<input type="password" name="password" minlength="8" required><small>Mínimo 8 caracteres.</small></label>
+      <button class="btn btn-primary btn-full" type="submit">Crear mi cuenta <i class="bi bi-arrow-right"></i></button>
+    </form>
+    <p class="auth-bottom">¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión</a></p>
+  </div>
+</section>

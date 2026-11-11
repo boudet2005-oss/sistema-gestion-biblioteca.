@@ -1,0 +1,16 @@
+<div class="detail-page">
+  <a class="back-link" href="/libros"><i class="bi bi-arrow-left"></i> Volver al catálogo</a>
+  <article class="detail-card">
+    <div class="detail-cover"><i class="bi bi-book-half"></i><span><%= book.category.toUpperCase() %></span></div>
+    <div class="detail-content">
+      <span class="eyebrow">DETALLE DEL LIBRO</span><h1><%= book.title %></h1><p class="detail-author">por <%= book.author %></p>
+      <div class="detail-facts"><div><small>CATEGORÍA</small><b><%= book.category %></b></div><div><small>AÑO</small><b><%= book.year || "No indicado" %></b></div><div><small>ISBN</small><b><%= book.isbn || "No indicado" %></b></div></div>
+      <h3>Descripción</h3><p class="description"><%= book.description || "No se ha añadido una descripción para este libro." %></p>
+      <% if (isAdmin && book.owner) { %><p class="owner-note">Registrado por: <b><%= book.owner.name %></b> (<%= book.owner.email %>)</p><% } %>
+      <div class="form-actions">
+        <a class="btn btn-outline" href="/libros/<%= book._id %>/editar"><i class="bi bi-pencil"></i> Editar</a>
+        <form action="/libros/<%= book._id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este libro?')"><button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i> Eliminar</button></form>
+      </div>
+    </div>
+  </article>
+</div>

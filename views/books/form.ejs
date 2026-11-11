@@ -1,0 +1,14 @@
+<div class="form-page">
+  <a class="back-link" href="/libros"><i class="bi bi-arrow-left"></i> Volver a mi biblioteca</a>
+  <div class="form-panel">
+    <span class="eyebrow">REGISTRO BIBLIOGRÁFICO</span><h1><%= book._id ? "Editar libro" : "Agregar un libro" %></h1><p class="muted">Completa la información del libro.</p>
+    <% if (errors.length) { %><div class="alert danger"><%= errors.map(e => e.msg).join(" ") %></div><% } %>
+    <form action="<%= formAction %>" method="POST" class="form-stack">
+      <div class="form-row"><label>Título *<input name="title" value="<%= book.title || '' %>" maxlength="160" required></label><label>Autor *<input name="author" value="<%= book.author || '' %>" maxlength="120" required></label></div>
+      <div class="form-row"><label>Categoría *<input name="category" value="<%= book.category || '' %>" placeholder="Ej. Novela, Historia..." maxlength="80" required></label><label>Año de publicación<input type="number" name="year" min="0" max="<%= new Date().getFullYear() + 1 %>" value="<%= book.year || '' %>"></label></div>
+      <label>ISBN<input name="isbn" value="<%= book.isbn || '' %>" maxlength="30" placeholder="Identificador ISBN (opcional)"></label>
+      <label>Descripción<textarea name="description" rows="5" maxlength="2000" placeholder="Breve descripción del libro..."><%= book.description || '' %></textarea></label>
+      <div class="form-actions"><a class="btn btn-outline" href="/libros">Cancelar</a><button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i> <%= book._id ? "Guardar cambios" : "Registrar libro" %></button></div>
+    </form>
+  </div>
+</div>

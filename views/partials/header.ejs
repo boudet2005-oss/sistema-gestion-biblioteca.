@@ -1,0 +1,15 @@
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="/"><span class="brand-icon"><i class="bi bi-book-half"></i></span><span>Biblioteca<span class="brand-light">Central</span></span></a>
+    <nav>
+      <% if (currentUser) { %>
+        <a href="/libros"><i class="bi bi-grid"></i> Mis libros<% if (isAdmin) { %> / Catálogo<% } %></a>
+        <span class="nav-user"><i class="bi bi-person-circle"></i> <%= currentUser.name %><% if (isAdmin) { %><span class="role-tag">ADMIN</span><% } %></span>
+        <form action="/auth/logout" method="POST" class="inline-form"><button class="nav-button" type="submit">Salir <i class="bi bi-box-arrow-right"></i></button></form>
+      <% } else { %>
+        <a href="/auth/login">Iniciar sesión</a>
+        <a class="nav-cta" href="/auth/registro">Crear cuenta</a>
+      <% } %>
+    </nav>
+  </div>
+</header>
